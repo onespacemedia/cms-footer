@@ -1,17 +1,18 @@
-from django import template
+import jinja2
+
+from django_jinja import library
 
 from ..models import Footer, FooterLinkGroup
 
-register = template.Library()
 
-
-@register.assignment_tag(takes_context=True)
-def footer_link_groups(context):
+@library.global_function
+def get_footer_link_groups():
     return FooterLinkGroup.objects.prefetch_related("children").all()
 
 
-@register.assignment_tag()
-def footer_content():
+@library.global_function
+@jinja2.contextfunction
+def get_footer_content():
     try:
         return Footer.objects.all()[:1][0]
     except IndexError:
