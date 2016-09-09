@@ -58,7 +58,7 @@ class FooterLink(FooterLinkAbstract):
 
     group = models.ForeignKey(
         FooterLinkGroup,
-        related_name="children",
+        related_name='children',
     )
 
     def __unicode__(self):

@@ -7,7 +7,7 @@ from ..models import Footer, FooterLinkGroup
 
 @library.global_function
 def get_footer_link_groups():
-    return FooterLinkGroup.objects.prefetch_related("children").all()
+    return FooterLinkGroup.objects.prefetch_related('children').all()
 
 
 @library.global_function

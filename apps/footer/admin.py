@@ -12,8 +12,8 @@ class FooterLinkInline(SortableStackedInline):
 
 @admin.register(FooterLinkGroup)
 class FooterLinkGroupAdmin(reversion.VersionAdmin, SortableModelAdmin):
-    inlines = (FooterLinkInline,)
-    list_display = ('link_text', 'link', 'page')
+    inlines = [FooterLinkInline]
+    list_display = ['link_text', 'link', 'page']
 
 
 class FooterAdmin(admin.ModelAdmin):
