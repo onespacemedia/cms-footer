@@ -1,5 +1,5 @@
-import reversion
 from django.contrib import admin
+from reversion.admin import VersionAdmin
 from suit.admin import SortableModelAdmin, SortableStackedInline
 
 from .models import Footer, FooterLink, FooterLinkGroup
@@ -11,7 +11,7 @@ class FooterLinkInline(SortableStackedInline):
 
 
 @admin.register(FooterLinkGroup)
-class FooterLinkGroupAdmin(reversion.VersionAdmin, SortableModelAdmin):
+class FooterLinkGroupAdmin(VersionAdmin, SortableModelAdmin):
     inlines = [FooterLinkInline]
     list_display = ['link_text', 'link', 'page']
 
