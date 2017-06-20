@@ -3,6 +3,7 @@ from django.db import models
 
 
 class FooterLinkAbstract(models.Model):
+
     page = models.ForeignKey(
         Page,
         blank=True,
@@ -32,25 +33,23 @@ class FooterLinkAbstract(models.Model):
         default='0'
     )
 
-    def __unicode__(self):
-        return self.link
-
     def __str__(self):
         return self.link
 
     def get_link(self):
         if self.page:
             return self.page.get_absolute_url()
+
         return self.link
 
     class Meta:
-        ordering = ('order', 'pk', )
+        ordering = ['order', 'pk']
         abstract = True
 
 
 class FooterLinkGroup(FooterLinkAbstract):
 
-    def __unicode__(self):
+    def __str__(self):
         return self.link
 
 
@@ -61,7 +60,7 @@ class FooterLink(FooterLinkAbstract):
         related_name='children',
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.link
 
 
@@ -85,5 +84,5 @@ class Footer(models.Model):
         max_length=4096
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.header
